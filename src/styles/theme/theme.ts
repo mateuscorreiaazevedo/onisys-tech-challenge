@@ -35,7 +35,7 @@ export const myTheme: Theme = {
     },
     blue: {
       ...theme.colors.blue,
-      700: '#5C5E7D'
+      700: '#3498d8'
     }
   },
   sizes: {

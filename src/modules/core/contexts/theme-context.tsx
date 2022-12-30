@@ -1,6 +1,6 @@
 import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
 import { ThemeProvider as Emotion } from '@emotion/react'
-import { myTheme } from '@/styles'
+import { newTheme } from '@/styles'
 import React from 'react'
 
 type PropviderProps = {
@@ -9,8 +9,8 @@ type PropviderProps = {
 
 export const ThemeProvider = ({ children }: PropviderProps) => {
   return (
-    <ChakraProvider theme={myTheme}>
-      <Emotion theme={myTheme}>
+    <ChakraProvider theme={newTheme}>
+      <Emotion theme={newTheme}>
         <ColorModeScript />
         <CSSReset />
         {children}
