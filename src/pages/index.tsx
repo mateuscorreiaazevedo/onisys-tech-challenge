@@ -9,10 +9,8 @@ type Props = {
 }
 
 function Home ({ posts }: Props) {
-  console.log(posts)
-
   return (
-    <Box as='main'>
+    <Box as="main">
       <Grid gridTemplateColumns="repeat(3, 1fr)" gap={10}>
         {posts.map((post) => (
           <CardPost key={post.id} {...post} />

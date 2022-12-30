@@ -1,55 +1,39 @@
-import {
-  Box,
-  Card,
-  CardBody,
-  Center,
-  Heading,
-  Image,
-  Stack,
-  Text
-} from '@chakra-ui/react'
+import { Box, Card, CardBody, Center, Heading, Image, Stack } from '@chakra-ui/react'
 import React from 'react'
 
 export const CardPost = (post: Post) => {
   return (
     <Card
-      transition="all 300ms"
       cursor="pointer"
       maxW="xs"
-      shadow="xl"
-      _hover={{
-        transform: 'scale(1.1)',
-        shadow: 'lg'
-      }}
-      bg="gray.100"
+      transition="all .3s"
+      bg="bgCard"
+      css={`
+        box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+        &:hover {
+          box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+          img {
+           transform: scale(1.06);
+        }
+        }
+      `}
     >
       <CardBody>
-        <Center>
+        <Center borderRadius="lg" position="relative" overflow="hidden">
           <Image
             objectFit="contain"
-            borderRadius="lg"
             src={post.featured_media.medium}
             alt={post.slug}
+            transition="all .3s"
           />
         </Center>
         <Stack mt={6} spacing={4}>
-          {post.categories.map((category) => (
-            <Box
-              key={category.id}
-              color="gray.500"
-              fontWeight="bold"
-              textTransform="uppercase"
-              fontSize="xs"
-            >
-              {category.name}
-            </Box>
-          ))}
-          <Heading as="h2" color="primary" fontSize="16">
+          <Box color="gray.500" fontWeight="bold" textTransform="uppercase" fontSize="text">
+            {post.categories.map((category) => category.name).join(', ')}
+          </Box>
+          <Heading as="h2" color="primary" fontSize="heading">
             {post.title}
           </Heading>
-          <Text color="gray.700" fontWeight="semibold">
-            {post.excerpt}
-          </Text>
         </Stack>
       </CardBody>
     </Card>
