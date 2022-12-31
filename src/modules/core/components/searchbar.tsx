@@ -18,7 +18,10 @@ export const SearchBar = () => {
 
   useOutsideClick({
     ref,
-    handler: () => setOpenSearch(false)
+    handler: () => {
+      setOpenSearch(false)
+      setSearch('')
+    }
   })
 
   return (
@@ -43,26 +46,22 @@ export const SearchBar = () => {
         visibility="hidden"
         css={`
           &.active {
-            height: 74vh;
+            height: 70vh;
             visibility: visible;
           }
           &.closed {
-            transition: all 0.6s ease-out;
+            transition: all 0.6s ;
           }
         `}
       >
         <VStack
           overflowY={'auto'}
           h={0}
-          py={4}
-          className={openSearch ? 'active' : 'closed'}
+          className={openSearch ? 'active' : ''}
           css={`
             &.active {
-              transition: all 0.35s ease-in;
+              transition: all .35s;
               height: 70vh;
-            }
-            &.closed {
-              transition: all 0.3s ease-out;
             }
           `}
         >

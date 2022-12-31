@@ -10,7 +10,7 @@ export const CardSearchbar = (post: Post) => {
       <Flex
         w="980px"
         transition="all .3s"
-        mt={3}
+        my={3}
         gap={4}
         p={4}
         borderRadius="md"
