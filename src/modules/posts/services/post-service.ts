@@ -1,10 +1,20 @@
-import { Service } from '@/modules/core'
+import { service } from '@/modules/core'
 import { postConstants } from '..'
 
-class PostService extends Service {
-  async getAll () {
-    const response = await this.request({
-      url: postConstants.POST_URL
+type GetAllProps = {
+  search?: string,
+  page?: number
+}
+
+class PostService {
+  async getAll (params: GetAllProps) {
+    const { search, page = 1 } = params
+    const response = await service.request({
+      url: postConstants.POST_URL,
+      params: {
+        page,
+        ...(search && { search })
+      }
     })
 
     switch (response.code) {

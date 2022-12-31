@@ -26,14 +26,14 @@ export const CardPost = (post: Post) => {
           <Center borderRadius="lg" position="relative" overflow="hidden">
             <Image
               objectFit="contain"
-              src={post.featured_media.medium}
+              src={post.featured_media?.medium || post.featured_media?.thumbnail}
               alt={post.slug}
               transition="all .3s"
             />
           </Center>
           <Stack mt={6} spacing={4}>
             <Box color="gray.500" fontWeight="bold" textTransform="uppercase" fontSize="text">
-              {post.categories.map((category) => category.name).join(', ')}
+              {post?.categories.map((category) => category.name).join(', ')}
             </Box>
             <Divider />
             <Heading as="h2" color="primary" fontSize="banner">

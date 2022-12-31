@@ -1,9 +1,9 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import { envSettings } from '@/main'
 
-type HttpRequest<T> = {
+type HttpRequest = {
   url: string
-  body?: T
+  body?: any
   method?: 'get' | 'post' | 'put' | 'delete'
   headers?: any
   params?: any
@@ -16,7 +16,7 @@ type HttpResponse<T> = {
 
 const BASE_URL = envSettings.API_URL
 
-export class Service {
+class Service {
   private api: AxiosInstance
 
   constructor () {
@@ -25,7 +25,7 @@ export class Service {
     })
   }
 
-  async request<T = any> (props: HttpRequest<T>): Promise<HttpResponse<T>> {
+  async request<T = any> (props: HttpRequest): Promise<HttpResponse<T>> {
     const { url, body, headers, method, params } = props
     let response: AxiosResponse
 
@@ -34,7 +34,7 @@ export class Service {
         url,
         data: body || {},
         headers: headers || {},
-        params: params || {},
+        params,
         method: method || 'get',
       })
     } catch (error) {
@@ -47,3 +47,5 @@ export class Service {
     }
   }
 }
+
+export const service = new Service()

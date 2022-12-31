@@ -23,7 +23,7 @@ function Home ({ posts }: Props) {
 export const getServerSideProps: GetServerSideProps<{ posts: Posts }> = async ({ res }) => {
   res.setHeader('Cache-Control', 'public, s-maxage=10, style-while-revalidate=50')
 
-  const posts = await postService.getAll()
+  const posts = await postService.getAll({})
 
   return {
     props: {

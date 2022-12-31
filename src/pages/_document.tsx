@@ -9,8 +9,6 @@ export default function Document () {
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta name="description" content="Desafio tech para a vaga de React Developer" />
-        <title>Tech-Challenge | Mateus Azevedo</title>
-
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
         </style>
