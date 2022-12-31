@@ -1,7 +1,18 @@
-import { Box, VStack, Input, Spinner, Text, Center, useOutsideClick } from '@chakra-ui/react'
+import {
+  Box,
+  VStack,
+  Input,
+  Spinner,
+  Text,
+  Center,
+  useOutsideClick,
+  InputGroup,
+  InputLeftElement
+} from '@chakra-ui/react'
 import { useSearchPosts } from '@/modules/posts'
 import { CardSearchbar } from './card-searchbar'
 import { themeHelper } from '..'
+import { BsSearch } from 'react-icons/bs'
 import React from 'react'
 
 export const SearchBar = () => {
@@ -26,13 +37,18 @@ export const SearchBar = () => {
 
   return (
     <Box w="full" ref={ref}>
-      <Input
-        bg={themeHelper('input-light', 'input-dark')}
-        w="full"
-        placeholder="Pesquisar artigos, notícias, etc..."
-        onChange={(e) => setSearch(e.target.value)}
-        onFocus={() => setOpenSearch((prev) => !prev)}
-      />
+      <InputGroup>
+        <InputLeftElement color="gray.400">
+          <BsSearch />
+        </InputLeftElement>
+        <Input
+          bg={themeHelper('input-light', 'input-dark')}
+          w="full"
+          placeholder="Pesquisar artigos, notícias, etc..."
+          onChange={(e) => setSearch(e.target.value)}
+          onFocus={() => setOpenSearch((prev) => !prev)}
+        />
+      </InputGroup>
       <Box
         className={openSearch ? 'active' : 'closed'}
         shadow="base"
@@ -50,7 +66,7 @@ export const SearchBar = () => {
             visibility: visible;
           }
           &.closed {
-            transition: all 0.6s ;
+            transition: all 0.6s;
           }
         `}
       >
@@ -60,7 +76,7 @@ export const SearchBar = () => {
           className={openSearch ? 'active' : ''}
           css={`
             &.active {
-              transition: all .35s;
+              transition: all 0.35s;
               height: 70vh;
             }
           `}
@@ -77,7 +93,7 @@ export const SearchBar = () => {
           {!loading && (
             <>
               {!posts.length && (
-                <Text color={themeHelper('gray.400', 'gray.200')} fontSize='banner'>
+                <Text color={themeHelper('gray.400', 'gray.200')} fontSize="banner">
                   Não existem artigos relacionados ao termo pesquisado!
                 </Text>
               )}
