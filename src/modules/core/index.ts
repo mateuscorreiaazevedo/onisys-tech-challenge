@@ -1,5 +1,7 @@
 export * from './contexts/theme-context'
 export * from './hooks/use-notification'
+export * from './hooks/use-loading-page'
 export * from './services/service'
 export * from './utils/theme-helper'
 export { default as Layout } from './components/layout'
+export * from './components/loading'
