@@ -1,3 +1,4 @@
+import { themeHelper } from '@/modules/core'
 import { Box, Card, CardBody, Center, Heading, Image, Stack } from '@chakra-ui/react'
 import React from 'react'
 
@@ -7,7 +8,7 @@ export const CardPost = (post: Post) => {
       cursor="pointer"
       maxW="xs"
       transition="all .3s"
-      bg="bgCard"
+      bg={themeHelper('card-light', 'card-dark')}
       css={`
         box-shadow: 0 5px 5px rgba(0,0,0,0.05);
         &:hover {
@@ -31,7 +32,7 @@ export const CardPost = (post: Post) => {
           <Box color="gray.500" fontWeight="bold" textTransform="uppercase" fontSize="text">
             {post.categories.map((category) => category.name).join(', ')}
           </Box>
-          <Heading as="h2" color="primary" fontSize="heading">
+          <Heading as="h2" color="primary" fontSize="banner">
             {post.title}
           </Heading>
         </Stack>

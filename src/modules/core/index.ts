@@ -1,4 +1,5 @@
 export * from './contexts/theme-context'
 export * from './hooks/use-notification'
 export * from './services/service'
+export * from './utils/theme-helper'
 export { default as Layout } from './components/layout'

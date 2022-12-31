@@ -11,7 +11,7 @@ type Props = {
 function Home ({ posts }: Props) {
   return (
     <Box as="main">
-      <Grid gridTemplateColumns="repeat(3, 1fr)" gap={10}>
+      <Grid gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={10} maxW='980px'>
         {posts.map((post) => (
           <CardPost key={post.id} {...post} />
         ))}
