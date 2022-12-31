@@ -17,7 +17,7 @@ export const SearchBar = () => {
         className="box-answer"
         bg={themeHelper('input-light', 'input-dark')}
         position="absolute"
-        left={-1}
+        left={-2}
         top={16}
         h={0}
         w="100vw"

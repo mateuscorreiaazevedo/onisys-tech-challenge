@@ -8,7 +8,7 @@ export const newTheme: ThemeConfig = extendTheme({
     global: (props: StyleFunctionProps) => ({
       'body, html': {
         overflowX: 'hidden',
-        bg: props.colorMode === 'dark' ? 'bg-dark' : 'bg-light',
+        bg: props.colorMode === 'dark' ? 'bg-dark' : 'gray.100',
         color: props.colorMode === 'dark' ? 'white' : 'gray.900',
       }
     })

@@ -29,7 +29,7 @@ export const Header = () => {
     >
       <Flex w="full" maxW="940px" mx={4} h="full" align="center" gap={4}>
         <Link href="/">
-          <Heading fontSize="heading" w="44">
+          <Heading fontSize="heading" w="44" color={themeHelper('gray.700', 'cyan.100')}>
             <Highlight query="Tech" styles={{ color: 'secondary', fontWeight: 'normal' }}>
               Tech Challenge
             </Highlight>
