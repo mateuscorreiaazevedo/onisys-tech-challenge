@@ -8,7 +8,7 @@ export const newTheme: ThemeConfig = extendTheme({
     global: (props: StyleFunctionProps) => ({
       'body, html': {
         overflowX: 'hidden',
-        bg: props.colorMode === 'dark' ? 'bg-dark' : 'gray.100',
+        bg: props.colorMode === 'dark' ? 'body-dark' : 'gray.100',
         color: props.colorMode === 'dark' ? 'white' : 'gray.900',
       }
     })
@@ -16,13 +16,12 @@ export const newTheme: ThemeConfig = extendTheme({
   colors: {
     primary: '#3487d8',
     secondary: '#ff99ca',
-    'text-light': '#333',
-    'text-dark': '#fff',
+    'body-dark': '#333',
     'bg-light': '#fefefe',
     'bg-dark': '#242424',
     'card-light': 'rgba(255,255,255,0.5)',
-    'card-dark': '#363636',
-    'input-dark': '#363636',
+    'card-dark': '#444',
+    'input-dark': '#444',
     'input-light': '#f5f5f5'
   },
   fontSizes: {
