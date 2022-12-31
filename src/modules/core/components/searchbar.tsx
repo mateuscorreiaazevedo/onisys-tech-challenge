@@ -1,30 +1,39 @@
-import { Box, VStack, Input, Spinner, Text, Center } from '@chakra-ui/react'
+import { Box, VStack, Input, Spinner, Text, Center, useOutsideClick } from '@chakra-ui/react'
+import { useSearchPosts } from '@/modules/posts'
+import { CardSearchbar } from './card-searchbar'
 import { themeHelper } from '..'
 import React from 'react'
-import { useSearchPosts } from '@/modules/posts'
 
 export const SearchBar = () => {
+  const ref = React.useRef(null)
   const [search, setSearch] = React.useState('')
+  const [openSearch, setOpenSearch] = React.useState(false)
   const { handleSubmit, loading, posts } = useSearchPosts(search)
+
   React.useEffect(() => {
     if (search) {
       handleSubmit()
     }
   }, [search])
 
+  useOutsideClick({
+    ref,
+    handler: () => setOpenSearch(false)
+  })
+
   return (
-    <>
+    <Box w="full" ref={ref}>
       <Input
         bg={themeHelper('input-light', 'input-dark')}
-        className="input"
         w="full"
         placeholder="Pesquisar artigos, notícias, etc..."
         onChange={(e) => setSearch(e.target.value)}
+        onFocus={() => setOpenSearch((prev) => !prev)}
       />
       <Box
+        className={openSearch ? 'active' : 'closed'}
         shadow="base"
         transition="all .4s"
-        className="box-answer"
         bg={themeHelper('input-light', 'input-dark')}
         position="absolute"
         left={-2}
@@ -32,12 +41,30 @@ export const SearchBar = () => {
         h={0}
         w="100vw"
         visibility="hidden"
+        css={`
+          &.active {
+            height: 74vh;
+            visibility: visible;
+          }
+          &.closed {
+            transition: all 0.6s ease-out;
+          }
+        `}
       >
         <VStack
-          className="content"
           overflowY={'auto'}
-          h="60vh"
-          visibility="hidden"
+          h={0}
+          py={4}
+          className={openSearch ? 'active' : 'closed'}
+          css={`
+            &.active {
+              transition: all 0.35s ease-in;
+              height: 70vh;
+            }
+            &.closed {
+              transition: all 0.3s ease-out;
+            }
+          `}
         >
           {loading
             ? (
@@ -46,16 +73,19 @@ export const SearchBar = () => {
             </Center>
               )
             : (
-                posts.map((post) => (
-              <div key={post.id}>
-                <img src={post.featured_media?.medium} alt="" />
-                {post.title}
-              </div>
-                ))
+                posts.map((post) => <CardSearchbar key={post.id} {...post} />)
               )}
-          {!posts && <Text>Não existem artigos relacionados ao termo pesquisado!</Text>}
+          {!loading && (
+            <>
+              {!posts.length && (
+                <Text color={themeHelper('gray.400', 'gray.200')} fontSize='banner'>
+                  Não existem artigos relacionados ao termo pesquisado!
+                </Text>
+              )}
+            </>
+          )}
         </VStack>
       </Box>
-    </>
+    </Box>
   )
 }

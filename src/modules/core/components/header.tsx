@@ -38,15 +38,6 @@ export const Header = () => {
         <Spacer />
         <HStack
           w="full"
-          css={`
-            .input:focus ~ .box-answer {
-              height: 60vh;
-              visibility: visible;
-            }
-            .input:focus ~ .box-answer .content {
-              visibility: visible;
-            }
-          `}
         >
           <SearchBar />
           <Switch

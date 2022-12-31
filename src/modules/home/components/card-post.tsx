@@ -7,7 +7,7 @@ export const CardPost = (post: Post) => {
   return (
     <Link href={`/posts/${post.slug}`}>
       <Card
-        h='370px'
+        h="370px"
         cursor="pointer"
         maxW="xs"
         transition="all .3s"
@@ -24,12 +24,14 @@ export const CardPost = (post: Post) => {
       >
         <CardBody>
           <Center borderRadius="lg" position="relative" overflow="hidden">
-            <Image
-              objectFit="contain"
-              src={post.featured_media?.medium || post.featured_media?.thumbnail}
-              alt={post.slug}
-              transition="all .3s"
-            />
+            {post.featured_media && (
+              <Image
+                objectFit="contain"
+                src={post.featured_media?.medium}
+                alt={post.slug}
+                transition="all .3s"
+              />
+            )}
           </Center>
           <Stack mt={6} spacing={4}>
             <Box color="gray.500" fontWeight="bold" textTransform="uppercase" fontSize="text">
