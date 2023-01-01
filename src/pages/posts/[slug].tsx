@@ -1,6 +1,7 @@
 import { PostAside, postService } from '@/modules/posts'
-import { Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, Heading, VStack } from '@chakra-ui/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {
@@ -9,16 +10,26 @@ type Props = {
 }
 
 function PostSlingle ({ post, posts }: Props) {
-  console.log(post)
-
   return (
-    <Flex minH="100vh">
-      <VStack>
-        {posts.map((post) => (
-          <PostAside key={post.id} {...post} />
+    <>
+      <Head>
+        {Object.keys(post.metas).map(key => (
+          <meta name={key} key={key} content={post.metas[key] as string} />
         ))}
-      </VStack>
-    </Flex>
+        <title>{post.title} | Mateus Azevedo</title>
+      </Head>
+      <Flex minH="100vh" gap={4}>
+        <VStack>
+          <Heading>{post.title}</Heading>
+          <Box as="main" w="2xl" dangerouslySetInnerHTML={{ __html: post.content }} />
+        </VStack>
+        <VStack>
+          {posts.map((post) => (
+            <PostAside key={post.id} {...post} />
+          ))}
+        </VStack>
+      </Flex>
+    </>
   )
 }
 
@@ -40,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug
 
-  const posts = await postService.getAll({ orderby: 'relevance' })
+  const posts = await postService.getAll({ orderBy: 'relevance' })
   const post = await postService.get(slug as string)
 
   return {

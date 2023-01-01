@@ -7,7 +7,7 @@ import React from 'react'
 export const PostAside = (post: Post) => {
   return (
     <Link href={`/posts/${post.slug}`}>
-      <Flex gap={2} bg={themeHelper('bg-light', 'bg-dark')} w={96} p={2} borderRadius="md">
+      <Flex gap={2} bg={themeHelper('bg-light', 'bg-dark')} w={'80'} p={2} borderRadius="md">
         {post.featured_media && (
           <Image
             className="thumbnail"
@@ -17,7 +17,7 @@ export const PostAside = (post: Post) => {
             height={100}
           />
         )}
-        <Heading fontSize="banner">{post.title}</Heading>
+        <Heading fontSize="md">{post.title}</Heading>
       </Flex>
     </Link>
   )

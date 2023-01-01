@@ -4,18 +4,18 @@ import { postConstants } from '..'
 type GetAllProps = {
   page?: number
   search?: string
-  orderby?: string
+  orderBy?: string
 }
 
 class PostService {
   async getAll (params: GetAllProps) {
-    const { search, page = 1, orderby } = params
+    const { search, page = 1, orderBy } = params
     const response = await service.request({
       url: postConstants.POSTS_URL,
       params: {
         page,
         ...(search && { search }),
-        ...(orderby && { orderby })
+        ...(orderBy && { orderby: orderBy })
       }
     })
 

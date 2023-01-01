@@ -1,29 +1,59 @@
 import { postService } from '@/modules/posts'
-import { CardPost } from '@/modules/home'
+import { CardPost, FilterHome } from '@/modules/home'
 import { GetServerSideProps } from 'next'
-import { Box, Grid } from '@chakra-ui/react'
+import { Button, Grid, Spinner, VStack } from '@chakra-ui/react'
+import { useNotification } from '@/modules/core'
 import React from 'react'
 
 type Props = {
   posts: Posts
 }
 
-function Home ({ posts }: Props) {
+function Home ({ posts: dataPosts }: Props) {
+  const [posts, setPosts] = React.useState<Posts>(dataPosts)
+  const [page, setPage] = React.useState(1)
+  const [showButton, setShowButton] = React.useState(true)
+  const [loading, setLoading] = React.useState(false)
+  const { setNotification } = useNotification()
+
+  const handlePage = async () => {
+    setLoading(true)
+    try {
+      const response = await postService.getAll({ page: page + 1 })
+      setPage(page + 1)
+      if (!response) {
+        setShowButton(false)
+      }
+      setPosts([...posts, ...response])
+    } catch (error) {
+      setNotification((error as any).message, 'error')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
-    <Box as="main">
-      <Grid gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={10} maxW='980px'>
+    <VStack as="main">
+      <FilterHome setData={setPosts} />
+      <Grid gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={10} maxW="980px">
         {posts.map((post) => (
           <CardPost key={post.id} {...post} />
         ))}
       </Grid>
-    </Box>
+      {loading && <Spinner />}
+      {showButton && (
+        <Button onClick={handlePage} colorScheme="blue" disabled={loading}>
+          Carregar mais...
+        </Button>
+      )}
+    </VStack>
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ posts: Posts }> = async ({ res }) => {
+export const getServerSideProps: GetServerSideProps<{ posts: Posts }> = async ({ res, query }) => {
   res.setHeader('Cache-Control', 'public, s-maxage=10, style-while-revalidate=50')
-
-  const posts = await postService.getAll({})
+  const orderby = query.orderby
+  const posts = await postService.getAll({ orderBy: orderby as string })
 
   return {
     props: {
