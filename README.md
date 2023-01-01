@@ -1,11 +1,21 @@
+# Tech Challenge Coodesh
+
+## Descrição
+Projeto tech challenge para vaga aplicada na Coodesh. Aplicação em ReactJs, usando framework NextJs para desempenho de estruturação pensados em SEO, além da performance em Server Side Rendering, utilizando as principais features do NextJs, no consumo de API Rest e estilizado com Chakra UI. 
 # Instruções de uso do projeto
 
 ## Instalar dependências
-
-Para instalar as dependências do projeto, uso o comando abaixo
+Para instalar as dependências do projeto, utilize o comando abaixo:
 
 ```
   yarn
+```
+
+## Iniciar a aplicação
+Para iniciar a aplicação no sistema localhost, utilize o comando abaixo:
+
+```
+  yarn dev
 ```
 
 # React Challenge 20201113
