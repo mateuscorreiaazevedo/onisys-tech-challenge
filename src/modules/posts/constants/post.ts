@@ -1,3 +1,4 @@
 export default {
-  POST_URL: '/posts'
+  POSTS_URL: '/posts',
+  POST_URL: '/posts/:POST_SLUG'
 }
