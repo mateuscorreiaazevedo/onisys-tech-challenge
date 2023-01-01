@@ -33,6 +33,8 @@ export const FilterHome = ({ setData }: Props) => {
         >
           <option value="date">Data de publicação</option>
           <option value="relevance">Relevância</option>
+          <option value="author">Autor</option>
+          <option value="title">Título</option>
         </Select>
       </FormLabel>
     </Flex>

@@ -10,6 +10,7 @@ export const newTheme: ThemeConfig = extendTheme({
         overflowX: 'hidden',
         bg: props.colorMode === 'dark' ? 'body-dark' : 'gray.100',
         color: props.colorMode === 'dark' ? 'white' : 'gray.900',
+        scrollBehavior: 'smooth',
       }
     })
   },

@@ -35,15 +35,14 @@ function Home ({ posts: dataPosts }: Props) {
   return (
     <VStack as="main">
       <FilterHome setData={setPosts} />
-      <Grid gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={10} maxW="980px">
+      <Grid pb={6} gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={10} maxW="980px">
         {posts.map((post) => (
           <CardPost key={post.id} {...post} />
         ))}
       </Grid>
-      {loading && <Spinner />}
       {showButton && (
         <Button onClick={handlePage} colorScheme="blue" disabled={loading}>
-          Carregar mais...
+          {loading ? <><Spinner mr={2}/> Carregando...</> : 'Carregar mais...'}
         </Button>
       )}
     </VStack>
