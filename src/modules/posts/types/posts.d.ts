@@ -14,7 +14,10 @@ type Post = {
     medium: string,
     thumbnail: string,
     'big-size': string,
-    '1536x1536': string
+    '1536x1536': string,
+    'mid-size': string,
+    medium_large: string
+    'web-stories-publisher-logo': string
   },
   categories: PostCategory[],
   content: string,
@@ -24,7 +27,10 @@ type Post = {
   },
   published: string,
   modified: string,
-  bibliography: string
+  bibliography: string,
+  metas: {
+    [key: string]: string | number
+  }
 }
 
 type Posts = Omit<Post, ['content', 'author', 'published', 'bibliography', 'modified']>[]

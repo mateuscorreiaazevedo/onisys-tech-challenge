@@ -1,5 +1,6 @@
 import { themeHelper } from '@/modules/core'
-import { Box, Card, CardBody, Center, Divider, Heading, Image, Stack } from '@chakra-ui/react'
+import { Box, Card, CardBody, Center, Divider, Heading, Stack } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -23,13 +24,26 @@ export const CardPost = (post: Post) => {
         `}
       >
         <CardBody>
-          <Center borderRadius="lg" position="relative" overflow="hidden">
+          <Center
+            borderRadius="lg"
+            position="relative"
+            overflow="hidden"
+            css={`
+              .image-card {
+                transition: all 0.3s;
+              }
+            `}
+          >
             {post.featured_media && (
               <Image
-                objectFit="contain"
-                src={post.featured_media?.medium}
+                loading='lazy'
+                blurDataURL={post.featured_media['web-stories-publisher-logo']}
+                placeholder='blur'
+                className="image-card"
+                src={post.featured_media?.['mid-size']}
                 alt={post.slug}
-                transition="all .3s"
+                width={300}
+                height={300}
               />
             )}
           </Center>
